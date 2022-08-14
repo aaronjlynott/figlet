@@ -1,0 +1,26 @@
+#we are going to take some input - either random text 0 command line arguments or two if preference
+#if preference first one will be -f or --f and the 2nd will be name of font
+#if not, sys.exit and return error
+
+#set the font with this - figlet.setFont(font=f)
+#output the text with font with this where s is text-print(figlet.renderText(s))
+from pyfiglet import Figlet
+figlet = Figlet()
+import sys
+import random
+
+figlet.getFonts()
+
+if len(sys.argv) == 3 and (sys.argv[1] == '-f' or sys.argv[1] == '--font'):
+    figlet.setFont(font = sys.argv[2])
+
+elif len(sys.argv) == 1:
+    font = random.choice(figlet.getFonts())
+
+else:
+    print('Error!')
+    sys.exit(1)
+
+whatchawant = input('Input: ')
+print('Output: ')
+print(figlet.renderText(whatchawant))
